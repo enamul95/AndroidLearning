@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Android Learing</string>
+    <string name="lb_medum">Medium</string>
+    <string name="lb_eduction">Education</string>
+    <string name="lb_user_name">User Name</string>
+    <string name="lb_password">Password</string>
+    <string name="btn_login">Login</string>
 </resources>
