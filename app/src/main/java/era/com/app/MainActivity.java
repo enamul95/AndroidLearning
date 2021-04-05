@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etUsrName;
     EditText etPassword;
     Button btnLogin;
+    TextView lb_register;
 
 
     @Override
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         etUsrName = findViewById(R.id.etUsrName);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        lb_register = findViewById(R.id.lb_register);
+
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
                       startActivity(intent);
                 }
 
+            }
+        });
+
+        lb_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,Registration.class);
+                startActivity(intent);
             }
         });
 
