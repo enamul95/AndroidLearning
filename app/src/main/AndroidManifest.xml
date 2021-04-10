@@ -10,8 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".TestClass"/>
-
         <activity
             android:name=".Registration"
             android:theme="@style/AppTheme.NoActionBar"/>
