@@ -66,6 +66,7 @@
             android:hint="Enter your user name "
             android:theme="@style/EditText.GREEN"
             android:textSize="@dimen/text_size"
+            android:inputType="phone"
             android:layout_marginTop="@dimen/margin_10"/>
 
         <TextView
@@ -124,6 +125,24 @@
 
 
 
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/lb_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/view_regsiter"/>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

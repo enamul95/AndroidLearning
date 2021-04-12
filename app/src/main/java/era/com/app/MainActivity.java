@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import era.com.app.dao.DBHelpler;
+import era.com.app.model.RegistrationModel;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText etPassword;
     Button btnLogin;
     TextView lb_register;
+
+    private DBHelpler dbHelpler;
 
 
     @Override
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         lb_register = findViewById(R.id.lb_register);
 
+        dbHelpler = new DBHelpler(this);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -49,15 +55,32 @@ public class MainActivity extends AppCompatActivity {
                 }else if(etPassword.getText().toString().isEmpty()){
                     Toast.makeText(MainActivity.this,"Please Enter password",Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(MainActivity.this, "User name :"+etUsrName.getText().toString()+" Password :"+etPassword.getText().toString(), Toast.LENGTH_SHORT).show();
 
-                    Log.e("user name :",etUsrName.getText().toString());
-                    Log.e("Password :",etPassword.getText().toString());
+                    RegistrationModel model = new RegistrationModel();
+                    model.setPhone(etUsrName.getText().toString());
+                    model.setPassword(etPassword.getText().toString());
+
+                    long l = dbHelpler.doLogin(model);
+
+                    if(l>0){
+                        Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(MainActivity.this,Welcome.class);
+                        intent.putExtra("mobileNumer",etUsrName.getText().toString());
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity.this, "Invalid User or Password", Toast.LENGTH_SHORT).show();
+                    }
+
+                    //Toast.makeText(MainActivity.this, "User name :"+etUsrName.getText().toString()+" Password :"+etPassword.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                   // Log.e("user name :",etUsrName.getText().toString());
+                   // Log.e("Password :",etPassword.getText().toString());
 
                      //got other activity or valiation
-                      Intent intent = new Intent(MainActivity.this,Welcome.class);
-                      intent.putExtra("user_name",etUsrName.getText().toString());
-                      startActivity(intent);
+                      //Intent intent = new Intent(MainActivity.this,Welcome.class);
+                      //intent.putExtra("user_name",etUsrName.getText().toString());
+                      //startActivity(intent);
                 }
 
             }

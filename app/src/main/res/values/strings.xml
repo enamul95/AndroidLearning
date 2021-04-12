@@ -2,7 +2,7 @@
     <string name="app_name">Android Learing</string>
     <string name="lb_medum">Medium</string>
     <string name="lb_eduction">Education</string>
-    <string name="lb_user_name">User Name</string>
+    <string name="lb_user_name">Mobile No</string>
     <string name="lb_password">Password</string>
     <string name="btn_login">Login</string>
     <string name="not_yet_register">Not yet registered?</string>
@@ -11,4 +11,5 @@
     <string name="lb_email">Email</string>
     <string name="lb_pone">Phone</string>
     <string name="btn_registration">Register</string>
+    <string name="view_regsiter">View All User Info</string>
 </resources>

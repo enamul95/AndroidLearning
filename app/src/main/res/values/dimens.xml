@@ -6,6 +6,12 @@
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_30">30dp</dimen>
 
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_30">30dp</dimen>
+
     <dimen name="text_size_header">20sp</dimen>
     <dimen name="text_size">16sp</dimen>
 </resources>

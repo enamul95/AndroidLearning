@@ -45,8 +45,20 @@ public class Registration extends AppCompatActivity {
                 model.setPhone(etPhone.getText().toString());
                 model.setPassword(etPassword.getText().toString());
 
-                long l = dbHelpler.doInserReg(model);
-                Toast.makeText(getApplicationContext(),"Insert Data "+l,Toast.LENGTH_LONG).show();
+                if(dbHelpler.isExist(model)){
+                    Toast.makeText(getApplicationContext(),"Mobile Number Already Exist!",Toast.LENGTH_LONG).show();
+                }else{
+                    long l = dbHelpler.doInserReg(model);
+                    if(l>0){
+                        Toast.makeText(getApplicationContext(),"Data Save successfully",Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Insert Failed",Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+
+
 
             }
         });

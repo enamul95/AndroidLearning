@@ -5,6 +5,7 @@ public class RegistrationModel {
     String eamil="";
     String phone="";
     String password="";
+    int id = 0;
 
     public String getFullName() {
         return fullName;
@@ -36,5 +37,13 @@ public class RegistrationModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
