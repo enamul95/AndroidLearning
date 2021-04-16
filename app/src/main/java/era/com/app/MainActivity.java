@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText etPassword;
     Button btnLogin;
     TextView lb_register;
+    TextView lb_user_info;
+
 
     private DBHelpler dbHelpler;
 
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         lb_register = findViewById(R.id.lb_register);
+        lb_user_info = findViewById(R.id.lb_user_info);
 
         dbHelpler = new DBHelpler(this);
 
@@ -90,6 +93,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,Registration.class);
+                startActivity(intent);
+            }
+        });
+
+        lb_user_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ViewUserInfo.class);
                 startActivity(intent);
             }
         });

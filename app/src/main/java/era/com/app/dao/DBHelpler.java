@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -93,6 +94,40 @@ public class DBHelpler extends SQLiteOpenHelper {
         return outModel;
 
     }
+
+
+    public ArrayList<RegistrationModel> getAllData() {
+        ArrayList<RegistrationModel>  list = new ArrayList<>();
+        String sql = "SELECT * FROM registration_tb ";
+        SQLiteDatabase sqdb = this.getReadableDatabase();
+        Cursor c = sqdb.rawQuery(sql, null);
+        if (c.moveToFirst()) {
+            do {
+                RegistrationModel outModel = new RegistrationModel();
+                outModel.setFullName(c.getString(c.getColumnIndex("fullname")));
+                outModel.setEamil(c.getString(c.getColumnIndex("email")));
+                outModel.setPhone(c.getString(c.getColumnIndex("phone")));
+                list.add(outModel);
+            }while (c.moveToNext());
+        }
+        return list;
+
+    }
+
+    //manual
+    public List<RegistrationModel> praticaltest( ) {
+        List<RegistrationModel>  list = new ArrayList<>();
+        RegistrationModel model1 = new RegistrationModel();
+        model1.setFullName("Enamul");
+        list.add(model1);
+
+        RegistrationModel model2 = new RegistrationModel();
+        model2.setFullName("Saiful");
+        list.add(model2);
+
+        return list;
+    }
+
     // inster into registration_tb(fullname,email,phone,pass)values('enamul','enaul@gmail.com','','11');
 
 }
