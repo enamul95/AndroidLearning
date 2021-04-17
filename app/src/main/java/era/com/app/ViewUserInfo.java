@@ -1,5 +1,6 @@
 package era.com.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class ViewUserInfo extends AppCompatActivity {
         setContentView(R.layout.activity_view_user_info);
 
         recyclerView = findViewById(R.id.recyclerView);
+
         dbHelpler = new DBHelpler(this);
         allData = dbHelpler.getAllData();
 
@@ -58,8 +60,7 @@ public class ViewUserInfo extends AppCompatActivity {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View itemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                    R.layout.row_user_info, null);
+            View itemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_user_info, null);
             itemLayoutView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
            ViewHolder viewHolder = new ViewHolder(itemLayoutView);
 
@@ -72,6 +73,7 @@ public class ViewUserInfo extends AppCompatActivity {
             RegistrationModel fp = dataList.get(i);
             viewHolder.tv_name.setText(fp.getFullName());
             viewHolder.tv_mobile.setText(fp.getPhone());
+            viewHolder.tv_email.setText(fp.getEamil());
             viewHolder.menu = fp;
         }
 
@@ -85,6 +87,7 @@ public class ViewUserInfo extends AppCompatActivity {
 
             public TextView tv_name;
             public TextView tv_mobile;
+            public TextView tv_email;
 
             public RegistrationModel menu;
 
@@ -93,6 +96,7 @@ public class ViewUserInfo extends AppCompatActivity {
 
                 tv_name = (TextView) itemLayoutView.findViewById(R.id.tv_name);
                 tv_mobile = (TextView) itemLayoutView.findViewById(R.id.tv_mobile);
+                tv_email = (TextView) itemLayoutView.findViewById(R.id.tv_email);
 
                 itemLayoutView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -107,4 +111,51 @@ public class ViewUserInfo extends AppCompatActivity {
 
         }
     }
+
+
+//  class  Adapter extends   RecyclerView.Adapter<Adapter.ViewHolder>{
+//
+//      @NonNull
+//      @Override
+//      public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//          return null;
+//      }
+//
+//      @Override
+//      public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
+//
+//      }
+//
+//      @Override
+//      public int getItemCount() {
+//          return 0;
+//      }
+//
+// public  class ViewHolder extends RecyclerView.ViewHolder {
+//
+//          public TextView tv_name;
+//          public TextView tv_mobile;
+//
+//          public RegistrationModel menu;
+//
+//          public ViewHolder(View itemLayoutView) {
+//              super(itemLayoutView);
+//
+//              tv_name = (TextView) itemLayoutView.findViewById(R.id.tv_name);
+//              tv_mobile = (TextView) itemLayoutView.findViewById(R.id.tv_mobile);
+//
+//              itemLayoutView.setOnClickListener(new View.OnClickListener() {
+//                  @Override
+//                  public void onClick(View v) {
+//
+//                  }
+//              });
+//
+//
+//
+//          }
+//
+//      }
+//  }
+
 }
