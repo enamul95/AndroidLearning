@@ -34,5 +34,9 @@ dependencies {
    //recyclerview
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
+    // for Retrofit and GSON library
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
 
 }

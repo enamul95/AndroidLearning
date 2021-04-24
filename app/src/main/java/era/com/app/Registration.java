@@ -3,6 +3,7 @@ package era.com.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -11,6 +12,11 @@ import android.widget.Toast;
 
 import era.com.app.dao.DBHelpler;
 import era.com.app.model.RegistrationModel;
+import era.com.app.model.RegistrationResponseModel;
+import era.com.app.retrofit.ApiService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Registration extends AppCompatActivity {
     EditText etName;
@@ -38,8 +44,9 @@ public class Registration extends AppCompatActivity {
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                doInsert();
 
-                RegistrationModel model = new RegistrationModel();
+               /* RegistrationModel model = new RegistrationModel();
                 model.setFullName(etName.getText().toString());
                 model.setEamil(etEmail.getText().toString());
                 model.setPhone(etPhone.getText().toString());
@@ -56,6 +63,7 @@ public class Registration extends AppCompatActivity {
                     }
 
                 }
+                */
 
 
 
@@ -64,5 +72,33 @@ public class Registration extends AppCompatActivity {
         });
 
 
+    }
+
+    private void doInsert(){
+        ApiService apiService = new ApiService();
+        RegistrationModel model = new RegistrationModel();
+        model.setFullName(etName.getText().toString());
+        model.setEamil(etEmail.getText().toString());
+        model.setPhone(etPhone.getText().toString());
+        model.setPassword(etPassword.getText().toString());
+        Call<RegistrationResponseModel> call = apiService.doUserRegistration(model);
+
+        call.enqueue(new Callback<RegistrationResponseModel>() {
+            @Override
+            public void onResponse(Call<RegistrationResponseModel> call, Response<RegistrationResponseModel> response) {
+                if(response.body() !=null){
+                    RegistrationResponseModel outResponseModel= response.body();
+                    if(outResponseModel !=null){
+                        Toast.makeText(getApplicationContext(),outResponseModel.getOutMessage(),Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegistrationResponseModel> call, Throwable t)
+            {
+                Log.e("registraito error-->",t.getMessage());
+            }
+        });
     }
 }
