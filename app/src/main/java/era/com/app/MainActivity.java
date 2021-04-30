@@ -15,6 +15,12 @@ import android.widget.Toast;
 
 import era.com.app.dao.DBHelpler;
 import era.com.app.model.RegistrationModel;
+import era.com.app.model.RegistrationResponseModel;
+import era.com.app.retrofit.ApiService;
+import era.com.app.util.CheckNetwork;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 }else if(etPassword.getText().toString().isEmpty()){
                     Toast.makeText(MainActivity.this,"Please Enter password",Toast.LENGTH_LONG).show();
                 }else{
-
+                    doLogin();
+/*
                     RegistrationModel model = new RegistrationModel();
                     model.setPhone(etUsrName.getText().toString());
                     model.setPassword(etPassword.getText().toString());
@@ -74,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(MainActivity.this, "Invalid User or Password", Toast.LENGTH_SHORT).show();
                     }
+
+                    */
 
                     //Toast.makeText(MainActivity.this, "User name :"+etUsrName.getText().toString()+" Password :"+etPassword.getText().toString(), Toast.LENGTH_SHORT).show();
 
@@ -105,5 +114,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void doLogin(){
+
+        ApiService apiService = new ApiService();
+
+        RegistrationModel model = new RegistrationModel();
+        model.setPhone(etUsrName.getText().toString());
+        model.setPassword(etPassword.getText().toString());
+
+        Call<RegistrationResponseModel> call = apiService.doLogin(model);
+
+        call.enqueue(new Callback<RegistrationResponseModel>() {
+            @Override
+            public void onResponse(Call<RegistrationResponseModel> call, Response<RegistrationResponseModel> response) {
+
+                if(response.body() !=null){
+                    RegistrationResponseModel outResponseModel= response.body();
+                  String outCode= CheckNetwork.getRetrofit_NullCheck(outResponseModel.getOutCode());
+                  String outMessage= CheckNetwork.getRetrofit_NullCheck(outResponseModel.getOutMessage());
+                    //Toast.makeText(MainActivity.this, outMessage, Toast.LENGTH_SHORT).show();
+                    if("0".equals(outCode)){
+                        Intent intent = new Intent(MainActivity.this,Welcome.class);
+                        intent.putExtra("mobileNumer",etUsrName.getText().toString());
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity.this, outMessage, Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegistrationResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

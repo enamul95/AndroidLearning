@@ -41,4 +41,11 @@ public class ApiService {
         );
     }
 
+    public Call<RegistrationResponseModel> doLogin(RegistrationModel model) {
+        return api.doLogin(model);
+    }
+
+    public Call<RegistrationResponseModel> getUserByPhone(RegistrationModel model) {
+        return api.getUserByPhone(model);
+    }
 }

@@ -1,5 +1,6 @@
 package era.com.app.retrofit;
 
+import era.com.app.model.RegistrationModel;
 import era.com.app.model.RegistrationResponseModel;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -19,6 +20,16 @@ public interface Api {
             @Field("password") String password
     );
 
+    @POST("app-api/user-login")
+    Call<RegistrationResponseModel> doLogin( @Body RegistrationModel userModel);
+
+
+    @POST("app-api/user-info")
+    Call<RegistrationResponseModel> getUserByPhone( @Body RegistrationModel userModel);
+
 
 
 }
+
+
+

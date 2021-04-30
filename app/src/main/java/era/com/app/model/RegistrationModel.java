@@ -7,6 +7,11 @@ public class RegistrationModel {
     String password="";
     int id = 0;
 
+    public RegistrationModel() {
+    }
+
+
+
     public String getFullName() {
         return fullName;
     }
