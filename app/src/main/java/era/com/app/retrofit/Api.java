@@ -20,7 +20,8 @@ public interface Api {
             @Field("password") String password
     );
 
-    @POST("app-api/user-login")
+   // @POST("app-api/user-login")
+    @POST("api/login-api.php")
     Call<RegistrationResponseModel> doLogin( @Body RegistrationModel userModel);
 
 

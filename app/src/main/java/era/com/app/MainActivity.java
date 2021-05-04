@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RegistrationResponseModel> call, Throwable t) {
-
+              Log.e("login error",t.getMessage());
             }
         });
     }

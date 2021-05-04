@@ -5,6 +5,7 @@ public class RegistrationModel {
     String eamil="";
     String phone="";
     String password="";
+    String requestCode="";
     int id = 0;
 
     public RegistrationModel() {
@@ -50,5 +51,13 @@ public class RegistrationModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getRequestCode() {
+        return requestCode;
+    }
+
+    public void setRequestCode(String requestCode) {
+        this.requestCode = requestCode;
     }
 }
