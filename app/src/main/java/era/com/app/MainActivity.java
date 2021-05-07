@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     TextView lb_register;
     TextView lb_user_info;
 
+    TextView tv_mobile;
+
 
     private DBHelpler dbHelpler;
 
@@ -47,7 +49,15 @@ public class MainActivity extends AppCompatActivity {
         lb_register = findViewById(R.id.lb_register);
         lb_user_info = findViewById(R.id.lb_user_info);
 
+        tv_mobile = findViewById(R.id.tv_mobile);
+
         dbHelpler = new DBHelpler(this);
+
+
+
+
+        tv_mobile.setText("মোবাইল নম্বর");
+
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
